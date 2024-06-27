@@ -1,3 +1,4 @@
+import org.gradle.jvm.toolchain.JvmVendorSpec.JETBRAINS
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 
@@ -6,11 +7,10 @@ fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     id("java") // Java support
-    alias(libs.plugins.kotlin) // Kotlin support
     alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
-    alias(libs.plugins.qodana) // Gradle Qodana Plugin
-    alias(libs.plugins.kover) // Gradle Kover Plugin
+//    alias(libs.plugins.qodana) // Gradle Qodana Plugin
+//    alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
 group = properties("pluginGroup").get()
@@ -27,9 +27,9 @@ dependencies {
 }
 
 // Set the JVM language level used to build the project.
-kotlin {
-    jvmToolchain(17)
-}
+//kotlin {
+//    jvmToolchain(17)
+//}
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
@@ -41,6 +41,13 @@ intellij {
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+        vendor.set(JETBRAINS)
+    }
+}
+
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     groups.empty()
@@ -48,15 +55,15 @@ changelog {
 }
 
 // Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
-kover {
-    reports {
-        total {
-            xml {
-                onCheck = true
-            }
-        }
-    }
-}
+//kover {
+//    reports {
+//        total {
+//            xml {
+//                onCheck = true
+//            }
+//        }
+//    }
+//}
 
 tasks {
     wrapper {
