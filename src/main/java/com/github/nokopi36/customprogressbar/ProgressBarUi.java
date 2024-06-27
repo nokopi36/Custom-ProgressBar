@@ -36,9 +36,9 @@ public class ProgressBarUi extends BasicProgressBarUI {
     private static final float ONE_OVER_SEVEN = 1f / 7;
     private static final JBColor VIOLET = JBColor.namedColor("violet", 0x5a009d);
     private static final String PACKAGE_PATH = "/com.github.nokopi36.customprogressbar/";
-    private final ScalableIcon CAT_ICON = (ScalableIcon) IconLoader.getIcon(PACKAGE_PATH + "rsz_cat.png",
+    private final ScalableIcon CAT_ICON = (ScalableIcon) IconLoader.getIcon(PACKAGE_PATH + "tbsten.png",
             getClass().getClassLoader());
-    private final ScalableIcon RCAT_ICON = (ScalableIcon) IconLoader.getIcon(PACKAGE_PATH + "rsz_rcat.png",
+    private final ScalableIcon RCAT_ICON = (ScalableIcon) IconLoader.getIcon(PACKAGE_PATH + "tbsten2.png",
             getClass().getClassLoader());
 
     @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
