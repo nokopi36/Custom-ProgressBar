@@ -35,9 +35,6 @@ public class ProgressBarUi extends BasicProgressBarUI {
     BufferedImage determinateBackGround = null;
     BufferedImage indeterminateBackGround = null;
 
-    private static final float ONE_OVER_SEVEN = 1f / 7;
-    private static final JBColor VIOLET = JBColor.namedColor("violet", 0x5a009d);
-
     public ProgressBarUi() {
         try {
             determinateBackGround = ImageIO.read(getClass().getResource(Icons.DeterminateBackGround));
@@ -45,8 +42,9 @@ public class ProgressBarUi extends BasicProgressBarUI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // TODO: 表示したい右向きの画像をここに格納
         iconList = new Icon[]{Icons.ICON1, Icons.ICON2};
-
+        // TODO: 表示したい左向きの画像をここに格納
         reverseIconList = new Icon[]{Icons.RICON1, Icons.RICON2};
 
         selectedIcon = getRandomOddIcon();
@@ -164,7 +162,9 @@ public class ProgressBarUi extends BasicProgressBarUI {
             scaledIcon = selectedReverseIcon;
             isReverse = true;
         }
-        scaledIcon.paintIcon(progressBar, g, offset2 - JBUIScale.scale(10), -JBUIScale.scale(6)); //aaaaaaaaaaaaaaaaaaa
+
+        // TODO: ここで動かすアイコンの細かい位置調整を行う
+        scaledIcon.paintIcon(progressBar, g, offset2 - JBUIScale.scale(0), -JBUIScale.scale(0));
 
         g.draw(new RoundRectangle2D.Float(1f, 1f, w - 2f - 1f, h - 2f - 1f, R, R));
         g.translate(0, -(c.getHeight() - h) / 2);
@@ -213,9 +213,9 @@ public class ProgressBarUi extends BasicProgressBarUI {
             g.fillRect(0, 0, w, h);
         }
 
-        final float R = JBUI.pixScale(8f);
-        final float R2 = JBUI.pixScale(9f);
-        final float off = JBUI.pixScale(1f);
+        final float R = JBUIScale.scale(8f);
+        final float R2 = JBUIScale.scale(9f);
+        final float off = JBUIScale.scale(1f);
 
         g2.translate(0, (c.getHeight() - h) / 2);
         g2.setColor(progressBar.getForeground());
@@ -223,12 +223,12 @@ public class ProgressBarUi extends BasicProgressBarUI {
         g2.setColor(background);
         g2.fill(new RoundRectangle2D.Float(off, off, w - 2f * off - off, h - 2f * off - off, R, R));
         if (determinateBackGround != null) {
-            TexturePaint tp = new TexturePaint(determinateBackGround, new Rectangle2D.Double(0, 2, 16, 16));
-            g2.setPaint(tp);
+            TexturePaint tp2 = new TexturePaint(determinateBackGround, new Rectangle2D.Double(0, 2, 16, 16));
+            g2.setPaint(tp2);
         }
 
         g2.fill(new RoundRectangle2D.Float(2f * off, 2f * off, amountFull - JBUIScale.scale(5f), h - JBUIScale.scale(5f), JBUIScale.scale(7f), JBUIScale.scale(7f)));
-        Icons.ICON1.paintIcon(progressBar, g2, amountFull - JBUI.scale(10), -JBUI.scale(6));
+        Icons.ICON1.paintIcon(progressBar, g2, amountFull - JBUIScale.scale(10), -JBUIScale.scale(6));
         g2.translate(0, -(c.getHeight() - h) / 2);
 
         // Deal with possible text painting
@@ -272,7 +272,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
     }
 
     private int getPeriodLength() {
-        return JBUI.scale(16);
+        return JBUIScale.scale(16);
     }
 
     private static boolean isOdd(int value) {
