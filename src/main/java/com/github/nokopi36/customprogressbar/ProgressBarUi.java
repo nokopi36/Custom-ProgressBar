@@ -228,7 +228,8 @@ public class ProgressBarUi extends BasicProgressBarUI {
         }
 
         g2.fill(new RoundRectangle2D.Float(2f * off, 2f * off, amountFull - JBUIScale.scale(5f), h - JBUIScale.scale(5f), JBUIScale.scale(7f), JBUIScale.scale(7f)));
-        Icons.ICON1.paintIcon(progressBar, g2, amountFull - JBUIScale.scale(10), -JBUIScale.scale(6));
+        // TODO: ここで動かすアイコンの細かい位置調整を行う
+        Icons.ICON1.paintIcon(progressBar, g2, amountFull - JBUIScale.scale(0), -JBUIScale.scale(0));
         g2.translate(0, -(c.getHeight() - h) / 2);
 
         // Deal with possible text painting
